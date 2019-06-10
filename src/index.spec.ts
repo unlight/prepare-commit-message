@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/tslint/config */
-import * as lib from '.';
 import { commitMessage } from '.';
 import { readFileSync } from 'fs';
 import { sync as findUpSync } from 'find-up';
@@ -11,7 +10,7 @@ jest.mock('find-up');
 (readFileSync as jest.Mock).mockImplementation(() => 'commit_message');
 
 it('smoke', () => {
-    expect(lib).toBeTruthy();
+    expect(commitMessage).toBeTruthy();
 });
 
 it('get message from .git/COMMIT_EDITMSG message', () => {
@@ -28,3 +27,5 @@ it('get from husky git params', () => {
     const huskyGitParams = '.git/COMMIT_EDITMSG message';
     expect(commitMessage({ huskyGitParams })).toEqual('commit_message');
 });
+
+it.todo('get message amend .git/COMMIT_EDITMSG commit HEAD');
